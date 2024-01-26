@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\InnowiseFridge_project.props" />
+</Project>
