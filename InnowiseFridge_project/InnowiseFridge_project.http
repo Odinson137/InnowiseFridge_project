@@ -1,0 +1,6 @@
+@InnowiseFridge_project_HostAddress = http://localhost:5145
+
+GET {{InnowiseFridge_project_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
