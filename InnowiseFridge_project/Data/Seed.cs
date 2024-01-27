@@ -59,9 +59,9 @@ public static class Seed
         await context.AddRangeAsync(product1, product2, product3, product4, product5, product6, 
             product7, product8, product9, product10);
 
-        var fridge1 = new Fridge() { Name = "KitchenFrost", OwnerName = "Anna", FridgeModel = fridgeModel1 };
+        var fridge1 = new Fridge() { Name = "KitchenFrost", OwnerName = "Owner", FridgeModel = fridgeModel1 };
 
-        var fridge2 = new Fridge() { Name = "CoolMaster", OwnerName = "Alex", FridgeModel = fridgeModel2 };
+        var fridge2 = new Fridge() { Name = "CoolMaster", OwnerName = "Owner", FridgeModel = fridgeModel2 };
         
         var fridge3 = new Fridge() { Name = "IceBoxPro", OwnerName = "Olga", FridgeModel = fridgeModel3 };
         
@@ -106,6 +106,29 @@ public static class Seed
             fridgeProduct4, fridgeProduct5, fridgeProduct6, fridgeProduct7, fridgeProduct8,
             fridgeProduct9, fridgeProduct10);
 
+        var admin = new User()
+        {
+            UserName = "Admin",
+            Password = "12345678Admin",
+            Role = Role.Admin,
+        };
+        
+        var owner = new User()
+        {
+            UserName = "Owner",
+            Password = "12345678Owner",
+            Role = Role.FridgeOwner,
+        };
+        
+        var justUser = new User()
+        {
+            UserName = "User",
+            Password = "12345678User",
+            Role = Role.Authorized,
+        };
+
+        await context.Users.AddRangeAsync(admin, owner, justUser);
+        
         await context.SaveChangesAsync();
     } 
 }

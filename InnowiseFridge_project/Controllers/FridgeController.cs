@@ -1,3 +1,6 @@
+using InnowiseFridge_project.DTO;
+using InnowiseFridge_project.Interfaces.RepositoryInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnowiseFridge_project.Controllers;
@@ -7,17 +10,21 @@ namespace InnowiseFridge_project.Controllers;
 public class FridgeController : ControllerBase
 {
     private readonly ILogger<FridgeController> _logger;
-    
-    public FridgeController(ILogger<FridgeController> logger)
+    private readonly IFridge _fridge;
+    public FridgeController(ILogger<FridgeController> logger, IFridge fridge)
     {
         _logger = logger;
+        _fridge = fridge;
     }
 
+    [AllowAnonymous]
     [HttpGet]
-    public IActionResult GetFridges()
+    [ProducesResponseType(200)]
+    public async Task<ActionResult<List<FridgeDto>>> GetFridges()
     {
         _logger.LogInformation("Get fridges");
-        return NotFound();
+        var fridges = await _fridge.GetFridgeAsync();
+        return Ok(fridges);
     }
     
 }

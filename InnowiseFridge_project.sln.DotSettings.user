@@ -1,3 +1,16 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=38bfa217_002D33d0_002D4968_002D9f80_002Dd24896b008f8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Registration_Successful" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Registration_Successful&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Registration_UserNameAlreadyTaken&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Registration_InvalidData&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Registration_ExceptionDuringSave&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Registration_PasswordsNotMatch_ReturnsNotFound&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Authorization_UserNotFound_ReturnsNotFound&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Authorization_Successful_ReturnsOkWithToken&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Authorization_PasswordsNotMatch_ReturnsNotFound&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Haier/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Innowise/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

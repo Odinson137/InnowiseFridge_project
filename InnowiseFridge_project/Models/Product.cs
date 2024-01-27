@@ -10,5 +10,7 @@ public class Product
     [MaxLength(100)]
     public string Name { get; set; } = null!;
     public int? DefaultQuantity { get; set; }
+    [MaxLength(50)]
+    public string? ImageUrl { get; set; }
     public ICollection<Fridge> Fridges { get; set; } = new List<Fridge>();
 }
