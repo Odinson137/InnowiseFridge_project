@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InnowiseFridgeTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ae27e32a6feefa44a7eddafd8ab4286f88bd1cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7139e24ad076ab20834fd1f70e3353fc3c62fdb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("InnowiseFridgeTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InnowiseFridgeTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

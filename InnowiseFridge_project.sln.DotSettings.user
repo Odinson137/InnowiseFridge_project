@@ -9,8 +9,15 @@
     &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Authorization_UserNotFound_ReturnsNotFound&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Authorization_Successful_ReturnsOkWithToken&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.UserControllerTests.Authorization_PasswordsNotMatch_ReturnsNotFound&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.ProductControllerTests.PatchProductAsync_SuccessfulUpdate_ReturnsOk&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.ProductControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.FridgeControllerTests.GetFridges_Successful_ReturnsOkWithEmptyList&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.FridgeControllerTests.GetFridges_Error_ReturnsInternalServerError&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.FridgeControllerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B::net8.0::InnowiseFridgeTests.FridgeProductControllerTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
 	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Haier/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Innowise/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

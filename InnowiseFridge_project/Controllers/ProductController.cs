@@ -1,5 +1,6 @@
 using InnowiseFridge_project.DTO;
 using InnowiseFridge_project.Interfaces.RepositoryInterfaces;
+using InnowiseFridge_project.Interfaces.ServiceInterfaces;
 using InnowiseFridge_project.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,9 @@ public class ProductController : ControllerBase
 {
     private readonly ILogger<ProductController> _logger;
     private readonly IProduct _product;
-    private readonly FileService _fileService;
+    private readonly IFileService _fileService;
 
-    public ProductController(ILogger<ProductController> logger, IProduct product, FileService fileService)
+    public ProductController(ILogger<ProductController> logger, IProduct product, IFileService fileService)
     {
         _logger = logger;
         _product = product;

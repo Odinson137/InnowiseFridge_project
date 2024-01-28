@@ -1,6 +1,8 @@
+using InnowiseFridge_project.Interfaces.ServiceInterfaces;
+
 namespace InnowiseFridge_project.Services;
 
-public class FileService
+public class FileService : IFileService
 {
     public string GetUniqueName(IFormFile file)
     {

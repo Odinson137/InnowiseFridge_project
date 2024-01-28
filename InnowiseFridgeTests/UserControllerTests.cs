@@ -4,7 +4,6 @@ using InnowiseFridge_project.DTO;
 using InnowiseFridge_project.Interfaces.RepositoryInterfaces;
 using InnowiseFridge_project.Interfaces.ServiceInterfaces;
 using InnowiseFridge_project.Models;
-using InnowiseFridge_project.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;

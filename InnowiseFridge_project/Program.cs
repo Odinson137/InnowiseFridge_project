@@ -2,6 +2,7 @@ using System.Text;
 using InnowiseFridge_project.Data;
 using InnowiseFridge_project.Interfaces.RepositoryInterfaces;
 using InnowiseFridge_project.Interfaces.ServiceInterfaces;
+using InnowiseFridge_project.Repository;
 using InnowiseFridge_project.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
@@ -15,7 +16,7 @@ services.AddScoped<IFridge, FridgeRepository>();
 services.AddScoped<IFridgeProduct, FridgeProductRepository>();
 services.AddScoped<IProduct, ProductRepository>();
 services.AddScoped<IUser, UserRepository>();
-services.AddScoped<FileService>();
+services.AddScoped<IFileService, FileService>();
 services.AddScoped<ITokenService, TokenService>();
 
 services.AddAutoMapper(typeof(MappingProfile));

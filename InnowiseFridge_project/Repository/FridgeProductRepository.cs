@@ -2,11 +2,12 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using InnowiseFridge_project.Data;
 using InnowiseFridge_project.DTO;
+using InnowiseFridge_project.Interfaces.RepositoryInterfaces;
 using InnowiseFridge_project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace InnowiseFridge_project.Interfaces.RepositoryInterfaces;
+namespace InnowiseFridge_project.Repository;
 
 public class FridgeProductRepository : IFridgeProduct
 {

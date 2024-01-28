@@ -127,4 +127,5 @@ public class FridgeProductController : ControllerBase
         
         return Ok();
     }
+    
 }
