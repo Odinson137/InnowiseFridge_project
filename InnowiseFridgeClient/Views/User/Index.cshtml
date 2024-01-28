@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "User Page";
+}
+
+<a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+<a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Registration">Registration</a>
+
+<h2>User List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>UserName</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Admin</th>
+            <th>12345678Admin</th>
+            <th>
+                @if (@Model == "Admin")
+                {
+                    <div>Авторизоан</div>
+                }
+            </th>
+        </tr>
+        <tr>
+            <th>Owner</th>
+            <th>12345678Owner</th>
+            <th>
+                @if (@Model == "Owner")
+                {
+                    <div>Авторизоан</div>
+                }
+            </th>
+        </tr>
+        <tr>
+            <th>JustUser</th>
+            <th>12345678JustUser</th>
+            <th>
+                @if (@Model == "JustUser")
+                {
+                    <div>Авторизоан</div>
+                }
+            </th>
+        </tr>
+    </tbody>
+</table>

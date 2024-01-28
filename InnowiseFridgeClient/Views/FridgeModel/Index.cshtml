@@ -1,0 +1,27 @@
+@model List<InnowiseFridgeClient.ViewModels.FridgeModelViewModel>
+
+@{
+
+}
+
+<h2>Все модели холодильников:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fridgeModel in Model)
+        {
+            <tr>
+                <th>@fridgeModel.Id</th>
+                <th>@fridgeModel.Name</th>
+                <th>@fridgeModel.Year</th>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowiseFridge_project", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowiseFridgeTests", "InnowiseFridgeTests\InnowiseFridgeTests.csproj", "{AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnowiseFridgeClient", "InnowiseFridgeClient\InnowiseFridgeClient.csproj", "{BD44246E-D16C-4647-A45A-6D0B9E334B3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFF906EF-CE2F-4ECF-9964-4CED91E8AE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD44246E-D16C-4647-A45A-6D0B9E334B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD44246E-D16C-4647-A45A-6D0B9E334B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD44246E-D16C-4647-A45A-6D0B9E334B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD44246E-D16C-4647-A45A-6D0B9E334B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,42 @@
+@model List<InnowiseFridgeClient.ViewModels.FridgeViewModel>
+
+@{
+}
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Fridge" asp-action="Add">Add fridge</a>
+
+<h1 class="text-danger">@ViewBag.Error</h1>
+
+<h2>Страница с холодильниками:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>OwnerName</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.OwnerName</td>
+                @if (@ViewBag.UserName == @user.OwnerName)
+                {
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Fridge" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                    </td>
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Fridge" asp-action="" asp-route-id="@user.Id">Delete</a>
+                    </td>                    
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
