@@ -20,17 +20,29 @@ public class FridgeController : Controller
     {
         _logger.LogInformation("Index");
         
+        var token = HttpContext.Session.GetString("AuthToken");
+        if (token == null)
+        {
+            ViewBag.Error = "you are not authorized, man";
+            return View(new List<FridgeViewModel>());
+        }
+        
+        var userName = HttpContext.Session.GetString("AuthUserName");
+
+        if (userName == null)
+        {
+            ViewBag.Error = "user name was not founded";
+            return View(new List<FridgeViewModel>());
+        }
+        
+        _client.Authentificating(token);
+        
         var response = await _client.GetClient().GetAsync("/api/Fridge");
         
         if (!response.IsSuccessStatusCode)
         {
             ViewBag.Error = "failed";
-        }
-
-        var userName = HttpContext.Session.GetString("AuthUserName");
-        if (userName == null)
-        {
-            ViewBag.Error = "user name not found"; 
+            return View(new List<FridgeViewModel>());
         }
         
         ViewBag.UserName = userName;
@@ -40,22 +52,63 @@ public class FridgeController : Controller
         return View(fridges);
     }
     
-    public IActionResult Add(string id)
+    public async Task<IActionResult> Products(string fridgeId)
+    {
+        _logger.LogInformation("Index");
+
+        var response = await _client.GetClient().GetAsync($"/api/FridgeProduct?fridgeId={fridgeId}");
+        if (!response.IsSuccessStatusCode)
+        {
+            ViewBag.Error = "failed";
+            return RedirectToAction("Index");
+        }
+        
+        var products = await response.Content.ReadFromJsonAsync<List<FridgeProductViewModel>>();
+        
+        return View(products);
+    }
+    
+    public async Task<IActionResult> Add()
     {
         _logger.LogInformation("Add");
-        var fridge = new FridgeViewModel();
+        
+        var token = HttpContext.Session.GetString("AuthToken");
+        if (token == null)
+        {
+            ViewBag.Error = "you are not authorized, man";
+            return View("Index");
+        }
+        
+        _client.Authentificating(token);
+
+        var response = await _client.GetClient().GetAsync($"/api/Product");
+        var products = await response.Content.ReadFromJsonAsync<List<FridgeProductViewModel>>();
+
+        int num = 0;
+        var fridge = new AddFridgeViewModel
+        {
+            Products = new List<FridgeStartProductsViewModel>(
+                products!.Select(p => new FridgeStartProductsViewModel()
+                {
+                    Num = num++,
+                    ProductId = p.Id,
+                    Name = p.Name,
+                    Count = 0,
+                }).ToList())
+        };
+
         return View(fridge);
     }
     
     [HttpPost]
-    public async Task<IActionResult> Add(FridgeViewModel fridgeViewModel)
+    public async Task<IActionResult> Add(AddFridgeViewModel fridgeViewModel)
     {
         _logger.LogInformation("Post Add");
         var token = HttpContext.Session.GetString("AuthToken");
         if (token == null)
         {
             ViewBag.Error = "token failed";
-            return View();
+            return View("Add");
         }
         
         var userName = HttpContext.Session.GetString("AuthUserName");
@@ -63,45 +116,105 @@ public class FridgeController : Controller
         if (userName == null)
         {
             ViewBag.Error = "user name failed";
-            return View();
+            return View("Add");
+        }
+
+        fridgeViewModel.OwnerName = userName;
+
+        fridgeViewModel.Products = fridgeViewModel.Products?.ToList().Where(c => c.Count > 0).ToList();
+        
+        _client.Authentificating(token);
+        var response = await _client.GetClient().PostAsJsonAsync("/api/Fridge", fridgeViewModel);
+        if (response.IsSuccessStatusCode) 
+            return RedirectToAction("Index");
+        
+        ViewBag.Error = "failed";
+        return View();
+
+    }
+    
+    public async Task<IActionResult> Edit(string id)
+    {
+        _logger.LogInformation("Edit");
+                
+        var token = HttpContext.Session.GetString("AuthToken");
+        if (token == null)
+        {
+            ViewBag.Error = "token failed";
+            return RedirectToAction("Index");
+        }
+        _client.Authentificating(token);
+        
+        var response = await _client.GetClient().GetAsync($"/api/Fridge/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            ViewBag.Error = "failed with open getting the fridge model";
+            return RedirectToAction("Index");
+        } 
+
+        var fridge = await response.Content.ReadFromJsonAsync<FridgeViewModel>();
+        return View(fridge);
+    }
+
+    
+    [HttpPost]
+    public async Task<IActionResult> Edit(FridgeViewModel fridgeViewModel)
+    {
+        _logger.LogInformation("Put Edit");
+        
+        var token = HttpContext.Session.GetString("AuthToken");
+        if (token == null)
+        {
+            ViewBag.Error = "token failed";
+            return View(fridgeViewModel.Id);
+        }
+        
+        var userName = HttpContext.Session.GetString("AuthUserName");
+
+        if (userName == null)
+        {
+            ViewBag.Error = "user name failed";
+            return View("Add");
         }
 
         fridgeViewModel.OwnerName = userName;
         
         _client.Authentificating(token);
-        
-        var response = await _client.GetClient().PostAsJsonAsync("/api/Fridge", fridgeViewModel);
-        var content = await response.Content.ReadAsStreamAsync();
-        if (!response.IsSuccessStatusCode)
-        {
-            ViewBag.Error = "failed";
-            return View();
-        }
-        
-        return RedirectToAction("Index");
 
-    }
-    
-    public IActionResult Edit(string id)
-    {
-        _logger.LogInformation("Edit");
-        var fridge = new FridgeViewModel();
-        return View(fridge);
-    }
+        var response = await _client.GetClient().PutAsJsonAsync("/api/Fridge", fridgeViewModel);
+        
+        if (response.IsSuccessStatusCode) return RedirectToAction("Index");
 
-    
-    [HttpPut]
-    public IActionResult Edit(string id, FridgeViewModel fridgeViewModel)
-    {
-        _logger.LogInformation("Put Edit");
-        var fridge = new FridgeViewModel();
+        ViewBag.Error = "failed with edit";
         return RedirectToAction("Index");
     }
     
-    [HttpDelete]
-    public IActionResult Delete(string id)
+    [HttpPost]
+    public async Task<IActionResult> Delete(string id)
     {
         _logger.LogInformation("Delete");
+        var token = HttpContext.Session.GetString("AuthToken");
+        if (token == null)
+        {
+            ViewBag.Error = "token failed";
+            return View(id);
+        }
+        
+        var userName = HttpContext.Session.GetString("AuthUserName");
+
+        if (userName == null)
+        {
+            ViewBag.Error = "user name failed";
+            return View(id);
+        }
+        
+        _client.Authentificating(token);
+        
+        var response = await _client.GetClient().DeleteAsync($"/api/Fridge/{id}");
+        if (response.IsSuccessStatusCode) return RedirectToAction("Index");
+        
+        ViewBag.Error = "the delete failed";
+
         return RedirectToAction("Index");
     }
 }

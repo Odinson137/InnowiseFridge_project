@@ -20,13 +20,17 @@ public class FridgeProductRepository : IFridgeProduct
         _mapper = mapper;
     }
     
-    public Task<List<ProductDto>> GetFridgeProductAsync(string fridgeId)
+    public Task<List<FridgeProductDto>> GetFridgeProductAsync(string fridgeId)
     {
-        var products = _context.Fridges
-            .Where(f => f.Id == fridgeId)
-            .Include(f => f.Products)
-            .SelectMany(f => f.Products)
-            .ProjectTo<ProductDto>(_mapper.ConfigurationProvider)
+        var products = _context.FridgeProducts
+            .Where(f => f.FridgeId == fridgeId)
+            .Select(f => new FridgeProductDto()
+            {
+                Id = f.Product.Id,
+                ImageUrl = f.Product.ImageUrl,
+                Name = f.Product.Name,
+                Quantity = f.Quantity,
+            })
             .ToListAsync();
 
         return products;

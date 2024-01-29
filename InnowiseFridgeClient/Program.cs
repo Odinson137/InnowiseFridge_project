@@ -1,3 +1,4 @@
+using InnowiseFridge_project.Services;
 using InnowiseFridgeClient.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // });
 
 builder.Services.AddScoped<HttpClientService>();
+builder.Services.AddScoped<FileService>();
 
 builder.Services.AddHttpClient();
 

@@ -1,0 +1,42 @@
+@model System.Collections.Generic.List<InnowiseFridgeClient.ViewModels.FridgeProductViewModel>?
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h1>@ViewBag.Error</h1>
+
+<h2>Страница с продуктами для данного холодильника:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>DefaultQuantity</th>
+            <th>ImageUrl</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Quantity</td>
+                @if (product.ImageUrl != null)
+                {
+                    <td>
+                        <img src="http://localhost:5145/@product.ImageUrl" alt="@product.Name}" width="100px" height="100px"/>
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>

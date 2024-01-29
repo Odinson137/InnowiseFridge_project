@@ -18,15 +18,13 @@ public class ProductControllerTests
     private readonly ProductController _controller;
     private readonly Mock<IProduct> _productMock;
     private readonly Mock<ILogger<ProductController>> _loggerMock;
-    private readonly Mock<IFileService> _fileServiceMock;
 
     public ProductControllerTests()
     {
         _productMock = new Mock<IProduct>();
         _loggerMock = new Mock<ILogger<ProductController>>();
-        _fileServiceMock = new Mock<IFileService>();
 
-        _controller = new ProductController(_loggerMock.Object, _productMock.Object, _fileServiceMock.Object);
+        _controller = new ProductController(_loggerMock.Object, _productMock.Object);
     }
     
     [Fact]
@@ -34,13 +32,13 @@ public class ProductControllerTests
     {
         // Arrange
         var productId = "existingProductId";
-        var patchProductDto = new PatchProductDto { Name = "NewName", Quantity = 10, Image = null };
+        var patchProductDto = new PatchProductDto { Name = "NewName", Quantity = 10, ImageUrl = null };
         var existingProduct = new Product { Id = productId, Name = "OldName", DefaultQuantity = 5, ImageUrl = "OldImage" };
 
         _productMock.Setup(p => p.GetProductAsync(productId)).ReturnsAsync(existingProduct);
 
         // Act
-        var result = await _controller.PatchProductAsync(productId, patchProductDto);
+        var result = await _controller.PatchProductAsync(patchProductDto);
 
         // Assert
         Assert.IsType<OkResult>(result);
@@ -51,17 +49,16 @@ public class ProductControllerTests
     {
         // Arrange
         var nonExistingProductId = "nonExistingProductId";
-        var patchProductDto = new PatchProductDto { Name = "NewName", Quantity = 10, Image = null };
+        var patchProductDto = new PatchProductDto { Id = "0", Name = "NewName", Quantity = 10, ImageUrl = null };
 
         _productMock.Setup(p => p.GetProductAsync(nonExistingProductId)).ReturnsAsync((Product?)null);
 
         // Act
-        var result = await _controller.PatchProductAsync(nonExistingProductId, patchProductDto);
+        var result = await _controller.PatchProductAsync(patchProductDto);
 
         // Assert
         Assert.IsType<NotFoundObjectResult>(result);
 
-        // Additional assertions based on your application's logic
     }
     
     [Fact]
@@ -75,7 +72,7 @@ public class ProductControllerTests
         _productMock.Setup(p => p.GetProductAsync(productId)).ReturnsAsync(existingProduct);
 
         // Act
-        var result = await _controller.PatchProductAsync(productId, patchProductDto);
+        var result = await _controller.PatchProductAsync(patchProductDto);
 
         // Assert
         Assert.IsType<BadRequestObjectResult>(result);
@@ -93,7 +90,7 @@ public class ProductControllerTests
         _productMock.Setup(p => p.GetProductAsync(productId)).ReturnsAsync(existingProduct);
 
         // Act
-        await _controller.PatchProductAsync(productId, patchProductDto);
+        await _controller.PatchProductAsync(patchProductDto);
 
         // Assert
         Assert.Equal(newProductName, existingProduct.Name);
@@ -111,32 +108,12 @@ public class ProductControllerTests
         _productMock.Setup(p => p.GetProductAsync(productId)).ReturnsAsync(existingProduct);
 
         // Act
-        await _controller.PatchProductAsync(productId, patchProductDto);
+        await _controller.PatchProductAsync(patchProductDto);
 
         // Assert
         Assert.Equal(newQuantity, existingProduct.DefaultQuantity);
     }
     
-    [Fact]
-    public async Task PatchProductAsync_UpdateImage_Successful()
-    {
-        // Arrange
-        var productId = "existingProductId";
-        var newImage = "NewImage";
-        var imageMock = new Mock<IFormFile>();
-        var patchProductDto = new PatchProductDto { Image = imageMock.Object };
-        var existingProduct = new Product { Id = productId, Name = "OldName", DefaultQuantity = 5, ImageUrl = "OldImage" };
-
-        _fileServiceMock.Setup(p => p.GetUniqueName(It.IsAny<IFormFile>())).Returns(newImage);
-        _fileServiceMock.Setup(p => p.CreateFileAsync(It.IsAny<IFormFile>(), newImage));
-        _productMock.Setup(p => p.GetProductAsync(productId)).ReturnsAsync(existingProduct);
-
-        // Act
-        await _controller.PatchProductAsync(productId, patchProductDto);
-
-        // Assert
-        Assert.Equal(newImage, existingProduct.ImageUrl);
-    }
 
 
 }

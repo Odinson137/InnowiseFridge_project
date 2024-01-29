@@ -28,6 +28,10 @@ namespace InnowiseFridge_project.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("FridgeModelId")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -76,7 +80,7 @@ namespace InnowiseFridge_project.Migrations
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("FridgeId", "ProductId");

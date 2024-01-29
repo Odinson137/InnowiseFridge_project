@@ -4,6 +4,7 @@ using InnowiseFridge_project.Models;
 using InnowiseFridge_project.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace InnowiseFridge_project.Controllers;
 
@@ -31,10 +32,12 @@ public class FridgeProductController : ControllerBase
         var fridgeExist = await _fridgeProduct.FridgeExistAsync(fridgeId);
         if (!fridgeExist)
         {
+            _logger.LogInformation("The fridge not found");
             return NotFound("The fridge not found");
         }
         
         var fridges = await _fridgeProduct.GetFridgeProductAsync(fridgeId);
+        _logger.LogInformation(JsonConvert.SerializeObject(fridges));
         return Ok(fridges);
     }
     

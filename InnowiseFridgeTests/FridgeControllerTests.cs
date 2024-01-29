@@ -27,7 +27,7 @@ public class FridgeControllerTests
     {
         // Arrange
         var fridgeList = new List<FridgeDto>();
-        _fridgeMock.Setup(f => f.GetFridgeAsync()).ReturnsAsync(fridgeList);
+        _fridgeMock.Setup(f => f.GetFridgesAsync()).ReturnsAsync(fridgeList);
 
         // Act
         var result = await _controller.GetFridges();
@@ -49,7 +49,7 @@ public class FridgeControllerTests
             // Add more fridges as needed
         };
 
-        _fridgeMock.Setup(f => f.GetFridgeAsync()).ReturnsAsync(fridgeList);
+        _fridgeMock.Setup(f => f.GetFridgesAsync()).ReturnsAsync(fridgeList);
 
         // Act
         var result = await _controller.GetFridges();

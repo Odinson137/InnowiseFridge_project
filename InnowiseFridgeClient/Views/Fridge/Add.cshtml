@@ -1,4 +1,4 @@
-@model InnowiseFridgeClient.ViewModels.FridgeViewModel
+@model InnowiseFridgeClient.ViewModels.AddFridgeViewModel
 
 @{
  
@@ -18,6 +18,23 @@
         <input asp-for="FridgeModelName" class="form-control"/>
         <span asp-validation-for="FridgeModelName" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="@Model.Description" class="control-label"></label>
+        <input asp-for="@Model.Description" class="form-control"/>
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
+    <h6>Добавьте начальные продукты при необходимости. Для этого к полю с названием продукта введите то количество, 
+        которое сейчас находится у вас в холодильнике</h6>
+    @foreach (var product in Model.Products)
+    {
+        <div class="form-group">
+            <label asp-for="@Model.Products[product.Num].Count" class="control-label">@product.Name</label>
+            <input asp-for="@Model.Products[product.Num].ProductId" class="form-control" style="display:none;"/>
+            <input asp-for="@Model.Products[product.Num].Name" class="form-control" style="display:none;"/>
+            <input asp-for="@Model.Products[product.Num].Count" class="form-control"/>
+            <span asp-validation-for="@Model.Products[product.Num].Count" class="text-danger"></span>
+        </div>
+    }    
     <div class="form-group">
         <input class="btn btn-outline-success float right" type="submit" value="Log in"/>
         <a class="btn btn-outline-secondary" asp-controller="User" asp-action="Index">Cancel</a>

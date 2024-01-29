@@ -15,5 +15,7 @@ public class Fridge
     public FridgeModel FridgeModel { get; set; } = null!;
     [MaxLength(50)]
     public string? OwnerName { get; set; }
+    [MaxLength(500)]
+    public string? Description { get; set; }
     public ICollection<Product> Products { get; set; } = new List<Product>();
 }

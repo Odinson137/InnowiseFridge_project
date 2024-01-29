@@ -1,8 +1,7 @@
-using InnowiseFridge_project.Interfaces.ServiceInterfaces;
 
 namespace InnowiseFridge_project.Services;
 
-public class FileService : IFileService
+public class FileService
 {
     public string GetUniqueName(IFormFile file)
     {
@@ -11,7 +10,7 @@ public class FileService : IFileService
     
     public async Task CreateFileAsync(IFormFile file, string nameFile)
     {
-        await using var stream = File.Create($@"./wwwroot/{nameFile}");
+        await using var stream = File.Create($@"./wwwroot/ProductImages/{nameFile}");
         await file.CopyToAsync(stream);
     }
 }

@@ -5,6 +5,22 @@
       "PackagePath": "staticwebassets\\InnowiseFridgeClient.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\buryy\\RiderProjects\\InnowiseFridge_project\\InnowiseFridgeClient\\wwwroot\\ProductImages\\Image_20240129_203613.jpeg",
+      "PackagePath": "staticwebassets\\ProductImages\\Image_20240129_203613.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\buryy\\RiderProjects\\InnowiseFridge_project\\InnowiseFridgeClient\\wwwroot\\ProductImages\\Image_20240129_203744.png",
+      "PackagePath": "staticwebassets\\ProductImages\\Image_20240129_203744.png"
+    },
+    {
+      "Id": "C:\\Users\\buryy\\RiderProjects\\InnowiseFridge_project\\InnowiseFridgeClient\\wwwroot\\ProductImages\\Image_20240129_203809.png",
+      "PackagePath": "staticwebassets\\ProductImages\\Image_20240129_203809.png"
+    },
+    {
+      "Id": "C:\\Users\\buryy\\RiderProjects\\InnowiseFridge_project\\InnowiseFridgeClient\\wwwroot\\ProductImages\\Image_20240129_203828.png",
+      "PackagePath": "staticwebassets\\ProductImages\\Image_20240129_203828.png"
+    },
+    {
       "Id": "C:\\Users\\buryy\\RiderProjects\\InnowiseFridge_project\\InnowiseFridgeClient\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

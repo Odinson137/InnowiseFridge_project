@@ -6,7 +6,7 @@ namespace InnowiseFridge_project.Interfaces.RepositoryInterfaces;
 
 public interface IFridgeProduct
 {
-    Task<List<ProductDto>> GetFridgeProductAsync(string fridgeId);
+    Task<List<FridgeProductDto>> GetFridgeProductAsync(string fridgeId);
     Task<bool> FridgeExistAsync(string fridgeId);
     Task<Fridge?> GetFridgeWithProductsAsync(string fridgeId);
     Task<Product?> GetProductAsync(string productId);

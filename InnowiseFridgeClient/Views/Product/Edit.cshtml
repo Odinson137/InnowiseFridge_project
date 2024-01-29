@@ -1,13 +1,13 @@
-@model InnowiseFridgeClient.ViewModels.FridgeViewModel
+@model InnowiseFridgeClient.ViewModels.EditProductViewModel?
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
+<h1 class="text-danger">@ViewBag.Error</h1>
+<h2>Edit fridge</h2>
 
-<h1>Edit fridge</h1>
-
-<form asp-action="Edit" method="post">
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input asp-for="Id" class="form-control" style="display:none"/>
     <div class="form-group">
@@ -16,14 +16,14 @@
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="FridgeModelName" class="control-label"></label>
-        <input asp-for="FridgeModelName" class="form-control"/>
-        <span asp-validation-for="FridgeModelName" class="text-danger"></span>
+        <label asp-for="DefaultQuantity" class="control-label"></label>
+        <input asp-for="DefaultQuantity" class="form-control"/>
+        <span asp-validation-for="DefaultQuantity" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control"/>
-        <span asp-validation-for="FridgeModelName" class="text-danger"></span>
+        <label asp-for="Image" class="control-label"></label>
+        <input asp-for="Image" class="form-control"/>
+        <span asp-validation-for="Image" type="file" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input class="btn btn-outline-success float right" type="submit" value="Log in"/>

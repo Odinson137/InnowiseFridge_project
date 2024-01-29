@@ -13,13 +13,31 @@ public class ProductController : ControllerBase
 {
     private readonly ILogger<ProductController> _logger;
     private readonly IProduct _product;
-    private readonly IFileService _fileService;
 
-    public ProductController(ILogger<ProductController> logger, IProduct product, IFileService fileService)
+    public ProductController(ILogger<ProductController> logger, IProduct product)
     {
         _logger = logger;
         _product = product;
-        _fileService = fileService;
+    }
+    
+    [Authorize]
+    [HttpGet]
+    [ProducesResponseType(200)]
+    public async Task<ActionResult> GetProductsAsync()
+    {
+        _logger.LogInformation("Get products from db");
+        var products = await _product.GetProductsAsync();
+        return Ok(products);
+    }
+    
+    [Authorize]
+    [HttpGet("{productId}")]
+    [ProducesResponseType(200)]
+    public async Task<ActionResult> GetProductAsync(string productId)
+    {
+        _logger.LogInformation("Get product from db");
+        var product = await _product.GetProductAsync(productId);
+        return Ok(product);
     }
     
     [Authorize("Admin")]
@@ -27,11 +45,11 @@ public class ProductController : ControllerBase
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     [ProducesResponseType(500)]
-    public async Task<ActionResult> PatchProductAsync(string productId, [FromBody] PatchProductDto productDto)
+    public async Task<ActionResult> PatchProductAsync([FromBody] PatchProductDto productDto)
     {
         _logger.LogInformation("Patch product in db");
         
-        var product = await _product.GetProductAsync(productId);
+        var product = await _product.GetProductAsync(productDto.Id);
         if (product == null)
         {
             return NotFound("The product not found");
@@ -52,13 +70,11 @@ public class ProductController : ControllerBase
             product.DefaultQuantity = productDto.Quantity;
         }
 
-        if (productDto.Image != null)
+        if (productDto.ImageUrl != null)
         {
-            string nameFile = _fileService.GetUniqueName(productDto.Image);
-            await _fileService.CreateFileAsync(productDto.Image, nameFile);
-            product.ImageUrl = nameFile;
+            product.ImageUrl = productDto.ImageUrl;
         }
-
+        
         await _product.SaveAsync();
         
         return Ok();

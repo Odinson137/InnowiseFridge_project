@@ -30,10 +30,10 @@ public class FridgeProductControllerTests
     {
         // Arrange
         var fridgeId = "existingFridgeId";
-        var productDtoList = new List<ProductDto>
+        var productDtoList = new List<FridgeProductDto>
         {
-            new ProductDto { Id = "1", Name = "Product1" },
-            new ProductDto { Id = "2", Name = "Product2" },
+            new() { Id = "1", Name = "Product1" },
+            new() { Id = "2", Name = "Product2" },
         };
 
         _fridgeProductMock.Setup(fp => fp.FridgeExistAsync(fridgeId)).ReturnsAsync(true);

@@ -1,8 +1,46 @@
-@model dynamic
+@model List<InnowiseFridgeClient.ViewModels.ProductViewModel>
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
+<h1 class="text-danger">@ViewBag.Error</h1>
 <h2>Продукты:</h2>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>DefaultQuantity</th>
+        <th>ImageUrl</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.DefaultQuantity</td>
+            @if (product.ImageUrl != null)
+            {
+                <td>
+                    <img src="/ProductImages/@product.ImageUrl" alt="@product.Name}" width="100px" height="100px"/>
+                </td>
+            }
+            else
+            {
+                <td></td>
+            }
+            <td>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Edit" asp-route-productId="@product.Id">Edit</a>
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>

@@ -8,5 +8,5 @@ public class FridgeProduct
     public Product Product { get; set; } = null!;
     public string FridgeId { get; set; } = null!;
     public Fridge Fridge { get; set; } = null!;
-    public int? Quantity { get; set; }
+    public int Quantity { get; set; }
 }

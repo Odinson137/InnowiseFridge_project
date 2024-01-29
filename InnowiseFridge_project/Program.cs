@@ -16,7 +16,6 @@ services.AddScoped<IFridge, FridgeRepository>();
 services.AddScoped<IFridgeProduct, FridgeProductRepository>();
 services.AddScoped<IProduct, ProductRepository>();
 services.AddScoped<IUser, UserRepository>();
-services.AddScoped<IFileService, FileService>();
 services.AddScoped<ITokenService, TokenService>();
 
 services.AddAutoMapper(typeof(MappingProfile));
